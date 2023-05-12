@@ -11,6 +11,8 @@ import { formatAmount, useCart } from "medusa-react"
 import Link from "next/link"
 import { Fragment } from "react"
 
+import { BsBag } from "react-icons/bs"
+
 const CartDropdown = () => {
   const { cart, totalItems } = useCart()
   const items = useEnrichedLineItems()
@@ -21,7 +23,10 @@ const CartDropdown = () => {
     <div className="h-full z-50" onMouseEnter={open} onMouseLeave={close}>
       <Popover className="relative h-full">
         <Link href="/cart" passHref>
-          <Popover.Button className="h-full">{`My Bag (${totalItems})`}</Popover.Button>
+          <Popover.Button className="h-full relative">
+            <BsBag className="w-5 h-5" />
+            <p className="bagCount absolute -top-2 -right-2 w-4 bg-slate-400 rounded-full">{totalItems}</p>
+          </Popover.Button>
         </Link>
         <Transition
           show={state}

@@ -5,6 +5,7 @@ import DropdownMenu from "@modules/layout/components/dropdown-menu"
 import MobileMenu from "@modules/mobile-menu/templates"
 import DesktopSearchModal from "@modules/search/templates/desktop-search-modal"
 import clsx from "clsx"
+import Image from "next/image"
 import Link from "next/link"
 import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
@@ -70,9 +71,11 @@ const Nav = () => {
             </div>
           </div>
 
-          <div className="flex items-center h-full">
+          <div className="flex items-center py-4 h-full">
             <Link href="/">
-              <a className="text-xl-semi uppercase">Acme</a>
+              <a href="">
+                <Image src="/logo.png" alt="logo" width={220} height={120} />
+              </a>
             </Link>
           </div>
 
