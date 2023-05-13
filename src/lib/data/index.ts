@@ -1,9 +1,9 @@
 import { medusaClient } from "@lib/config"
-import { Product, StoreGetProductsParams } from "@medusajs/medusa"
+import { StoreGetProductsParams } from "@medusajs/medusa"
 
 const COL_LIMIT = 15
 
-const getFeaturedProducts = async (): Promise<Product[]> => {
+const getFeaturedProducts = async () => {
   const payload = {} as Record<string, unknown>
 
   if (process.env.FEATURED_PRODUCTS) {
