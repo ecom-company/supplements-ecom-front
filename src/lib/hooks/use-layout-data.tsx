@@ -1,6 +1,7 @@
 import { medusaClient } from "@lib/config"
 import { getPercentageDiff } from "@lib/util/get-precentage-diff"
 import { Product, ProductCollection, Region } from "@medusajs/medusa"
+import { PricedProduct } from "@medusajs/medusa/dist/types/pricing"
 import { useQuery } from "@tanstack/react-query"
 import { formatAmount, useCart } from "medusa-react"
 import { ProductPreviewType } from "types/global"
@@ -46,62 +47,68 @@ export const useNavigationCollections = () => {
   return queryResults
 }
 
-const fetchFeaturedProducts = async (
-  cartId: string,
-  region: Region
-): Promise<ProductPreviewType[]> => {
-  const products = await medusaClient.products
+const fetchFeaturedProducts = async (cartId: string, region: Region) => {
+  const products: PricedProduct[] = await medusaClient.products
     .list({
       is_giftcard: false,
       limit: 4,
       cart_id: cartId,
     })
     .then(({ products }) => products)
-    .catch((_) => [] as Product[])
+    .catch((_) => [] as PricedProduct[])
 
   return products
-    .filter((p) => !!p.variants)
-    .map((p) => {
-      const variants = p.variants as CalculatedVariant[]
+    .filter((p: { variants: any }): p is PricedProduct => !!p.variants)
+    .map(
+      (p: {
+        variants: CalculatedVariant[]
+        id: any
+        title: any
+        handle: any
+        thumbnail: any
+      }) => {
+        const variants = p.variants as CalculatedVariant[]
 
-      const cheapestVariant = variants.reduce((acc, curr) => {
-        if (acc.calculated_price > curr.calculated_price) {
-          return curr
+        const cheapestVariant = variants.reduce((acc, curr) => {
+          if (acc.calculated_price > curr.calculated_price) {
+            return curr
+          }
+          return acc
+        }, variants[0])
+
+        return {
+          id: p.id,
+          title: p.title,
+          handle: p.handle,
+          thumbnail: p.thumbnail,
+          price: cheapestVariant
+            ? {
+                calculated_price: formatAmount({
+                  amount: cheapestVariant.calculated_price,
+                  region: region,
+                  includeTaxes: false,
+                }),
+                original_price: formatAmount({
+                  amount: cheapestVariant.original_price,
+                  region: region,
+                  includeTaxes: false,
+                }),
+                difference: getPercentageDiff(
+                  cheapestVariant.original_price,
+                  cheapestVariant.calculated_price
+                ),
+                price_type: cheapestVariant.calculated_price_type,
+              }
+            : {
+                calculated_price: "N/A",
+                original_price: "N/A",
+                difference: "N/A",
+                price_type: "default",
+              },
         }
-        return acc
-      }, variants[0])
-
-      return {
-        id: p.id,
-        title: p.title,
-        handle: p.handle,
-        thumbnail: p.thumbnail,
-        price: cheapestVariant
-          ? {
-              calculated_price: formatAmount({
-                amount: cheapestVariant.calculated_price,
-                region: region,
-                includeTaxes: false,
-              }),
-              original_price: formatAmount({
-                amount: cheapestVariant.original_price,
-                region: region,
-                includeTaxes: false,
-              }),
-              difference: getPercentageDiff(
-                cheapestVariant.original_price,
-                cheapestVariant.calculated_price
-              ),
-              price_type: cheapestVariant.calculated_price_type,
-            }
-          : {
-              calculated_price: "N/A",
-              original_price: "N/A",
-              difference: "N/A",
-              price_type: "default",
-            },
       }
-    })
+    )
+    .filter((p: { id: any }) => !!p.id) as ProductPreviewType[]
 }
 
 export const useFeaturedProductsQuery = () => {
