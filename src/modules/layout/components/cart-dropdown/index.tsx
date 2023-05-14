@@ -25,7 +25,7 @@ const CartDropdown = () => {
         <Link href="/cart" passHref>
           <Popover.Button className="h-full relative">
             <BsBag className="w-5 h-5" />
-            <p className="bagCount absolute -top-2 -right-2 w-4 bg-slate-400 rounded-full">{totalItems}</p>
+            <p className="bagCount absolute top-2 -right-2 w-4 bg-slate-400 rounded-full">{totalItems}</p>
           </Popover.Button>
         </Link>
         <Transition
