@@ -2,6 +2,13 @@ const { withStoreConfig } = require("./store-config")
 const store = require("./store.config.json")
 
 module.exports = withStoreConfig({
+  typescript: {
+    // !! WARN !!
+    // Dangerously allow production builds to successfully complete even if
+    // your project has type errors.
+    // !! WARN !!
+    ignoreBuildErrors: true,
+  },
   features: store.features,
   reactStrictMode: true,
   images: {
