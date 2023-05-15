@@ -7,14 +7,14 @@ import { NextPageWithLayout } from "types/global"
 
 const Home: NextPageWithLayout = () => {
   return (
-    <>
+    <div className="snap-container">
       <Head
         title="Home"
         description="Shop all available models only at the ACME. Worldwide Shipping. Secure Payment."
       />
       <Hero />
       <FeaturedProducts />
-    </>
+    </div>
   )
 }
 
