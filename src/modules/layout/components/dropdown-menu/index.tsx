@@ -11,6 +11,7 @@ import { chunk } from "lodash"
 import Link from "next/link"
 import { useRouter } from "next/router"
 import React, { useState } from "react"
+import { HiMenu } from "react-icons/hi"
 
 const DropdownMenu = () => {
   const [open, setOpen] = useState(false)
@@ -33,11 +34,11 @@ const DropdownMenu = () => {
               <a className="relative flex h-full">
                 <Popover.Button
                   className={clsx(
-                    "relative h-full flex items-center transition-all text-base ease-out duration-200"
+                    "relative h-full flex items-center text-3xl transition-all text-main-blue ease-out duration-200"
                   )}
                   onClick={() => push("/store")}
                 >
-                  Productos
+                  <HiMenu />
                 </Popover.Button>
               </a>
             </Link>
