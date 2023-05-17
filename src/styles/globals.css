@@ -120,12 +120,6 @@
   border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
-/* .snap-container {
-  scroll-snap-type: y mandatory;
-  scroll-behavior: smooth;
-  overflow-y: scroll;
+.swiper-pagination .swiper-pagination-bullet-active {
+  background: red;
 }
-
-.snap-item {
-  scroll-snap-align: center;
-} */
