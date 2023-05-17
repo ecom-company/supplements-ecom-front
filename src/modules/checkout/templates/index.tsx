@@ -1,6 +1,7 @@
 import { CheckoutProvider } from "@lib/context/checkout-context"
 import ChevronDown from "@modules/common/icons/chevron-down"
 import MedusaCTA from "@modules/layout/components/medusa-cta"
+import Image from "next/image"
 import Link from "next/link"
 import CheckoutLoader from "../components/checkout-loader"
 import CheckoutForm from "./checkout-form"
@@ -22,7 +23,9 @@ const CheckoutTemplate = () => {
               </a>
             </Link>
             <Link href="/">
-              <a className="text-xl-semi">ACME</a>
+              <a>
+                <Image src="/logo.png" alt="logo" width={220} height={120} />
+              </a>
             </Link>
             <div className="flex-1 basis-0" />
           </nav>
