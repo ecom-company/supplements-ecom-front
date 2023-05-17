@@ -11,6 +11,8 @@ const CheckoutSummary = () => {
     return null
   }
 
+  console.log(cart)
+
   return (
     <div className="sticky top-0 flex flex-col-reverse small:flex-col gap-y-8">
       <div className="w-full bg-white p-6 flex flex-col gap-y-6">
