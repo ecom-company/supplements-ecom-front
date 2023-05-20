@@ -24,7 +24,7 @@ const CheckoutTemplate = () => {
             </Link>
             <Link href="/">
               <a>
-                <Image src="/logo.png" alt="logo" width={220} height={120} />
+                <Image src="/logo.png" alt="logo" width={150} height={80} />
               </a>
             </Link>
             <div className="flex-1 basis-0" />
@@ -36,9 +36,6 @@ const CheckoutTemplate = () => {
             <CheckoutForm />
             <CheckoutSummary />
           </div>
-        </div>
-        <div className="py-4 w-full flex items-center justify-center">
-          <MedusaCTA />
         </div>
       </div>
     </CheckoutProvider>

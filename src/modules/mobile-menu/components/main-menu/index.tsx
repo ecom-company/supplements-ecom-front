@@ -5,6 +5,7 @@ import ChevronDown from "@modules/common/icons/chevron-down"
 import Search from "@modules/common/icons/search"
 import X from "@modules/common/icons/x"
 import { useCollections, useMeCustomer } from "medusa-react"
+import Image from "next/image"
 import Link from "next/link"
 import ReactCountryFlag from "react-country-flag"
 
@@ -25,7 +26,7 @@ const MainMenu = () => {
 
   return (
     <div className="flex flex-col flex-1">
-      <div className="flex items-center justify-between w-full border-b border-gray-200 py-4 px-6">
+      <div className="flex items-center justify-between w-full border-b border-gray-200 py-1 px-6">
         <div className="flex-1 basis-0">
           <button
             className="flex items-center gap-x-2"
@@ -36,7 +37,7 @@ const MainMenu = () => {
           </button>
         </div>
         <div>
-          <h1 className="text-xl-semi uppercase">Acme</h1>
+          <Image src="/logo.png" alt="logo" width={150} height={80} />
         </div>
         <div className="flex-1 basis-0 flex justify-end">
           <button onClick={close}>

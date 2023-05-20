@@ -3,8 +3,8 @@ import Image from "next/image"
 
 const Hero = () => {
   return (
-    <div className="h-[100vh] w-full relative snap-item">
-      <div className="text-main-blue absolute top-24 z-10 flex flex-col justify-center items-center text-center small:text-left small:justify-end small:items-start small:p-32">
+    <div className="h-[90vh] w-full relative snap-item">
+      <div className="text-slate-100 absolute top-24 z-10 flex flex-col justify-center items-center text-center small:text-left small:justify-end max-sm:top-48 max-lg:top-56 max-lg:left-7 max-sm:left-0 small:items-start small:p-32">
         <h1 className="text-5xl mb-4 drop-shadow-md shadow-black uppercase font-extrabold">
           Suplementos
         </h1>
@@ -19,7 +19,7 @@ const Hero = () => {
         layout="fill"
         loading="eager"
         priority={true}
-        quality={90}
+        // quality={90}
         objectFit="cover"
         alt="Hero image"
         className="absolute inset-0"
