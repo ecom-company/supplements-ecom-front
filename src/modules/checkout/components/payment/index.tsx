@@ -3,13 +3,8 @@ import Spinner from "@modules/common/icons/spinner"
 import { useEffect } from "react"
 import PaymentContainer from "../payment-container"
 import StepContainer from "../step-container"
-import dynamic from "next/dynamic"
 
 const Payment = () => {
-  const MercadoTest = dynamic(import("../../../../../mercado/mercado"), {
-    ssr: false,
-  })
-
   const {
     cart,
     setPaymentSession,
@@ -50,7 +45,25 @@ const Payment = () => {
     >
       <div>
         {cart?.payment_sessions?.length ? (
-          <MercadoTest />
+          cart.payment_sessions
+            .sort((a, b) => {
+              return a.provider_id > b.provider_id ? 1 : -1
+            })
+            .map((paymentSession) => {
+              return (
+                <PaymentContainer
+                  paymentSession={paymentSession}
+                  key={paymentSession.id}
+                  selected={
+                    cart?.payment_session?.provider_id ===
+                    paymentSession.provider_id
+                  }
+                  setSelected={() =>
+                    setPaymentSession(paymentSession.provider_id)
+                  }
+                />
+              )
+            })
         ) : (
           <div className="flex flex-col items-center justify-center px-4 py-16 text-gray-900">
             <Spinner />
