@@ -51,7 +51,7 @@ const fetchFeaturedProducts = async (cartId: string, region: Region) => {
   const products: PricedProduct[] = await medusaClient.products
     .list({
       is_giftcard: false,
-      limit: 4,
+      limit: 6,
       cart_id: cartId,
     })
     .then(({ products }) => products)

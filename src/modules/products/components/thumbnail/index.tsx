@@ -19,10 +19,10 @@ const Thumbnail: React.FC<ThumbnailProps> = ({
 
   return (
     <div
-      className={clsx("relative aspect-[29/34]", {
+      className={clsx("relative aspect-[29/25]", {
         "w-[180px]": size === "small",
         "w-[290px]": size === "medium",
-        "w-[440px]": size === "large",
+        "w-[540px]": size === "large",
         "w-full": size === "full",
       })}
     >
@@ -42,7 +42,7 @@ const ImageOrPlaceholder = ({
       layout="fill"
       objectFit="cover"
       objectPosition="center"
-      className="absolute inset-0"
+      className="absolute inset-0 rounded-sm"
       draggable={false}
     />
   ) : (

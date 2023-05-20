@@ -9,6 +9,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
+import { HiOutlineUserCircle } from "react-icons/hi2"
 
 const Nav = () => {
   const { pathname } = useRouter()
@@ -48,7 +49,7 @@ const Nav = () => {
     >
       <header
         className={clsx(
-          "relative h-16 px-8 mx-auto transition-colors bg-transparent border-b border-transparent duration-200 group-hover:bg-white group-hover:border-gray-200",
+          "relative h-16 py-9 px-8 mx-auto transition-colors bg-transparent border-b border-transparent duration-200 group-hover:bg-white group-hover:border-gray-200",
           {
             "!bg-white !border-gray-200": !isHome || isScrolled,
           }
@@ -74,16 +75,18 @@ const Nav = () => {
           <div className="flex items-center py-4 h-full">
             <Link href="/">
               <a href="">
-                <Image src="/logo.png" alt="logo" width={220} height={120} />
+                <Image src="/logo.png" alt="logo" width={150} height={80} />
               </a>
             </Link>
           </div>
 
-          <div className="flex items-center gap-x-6 h-full flex-1 basis-0 justify-end">
+          <div className="flex items-center gap-x-6 flex-1 basis-0 justify-end mr-2">
             <div className="hidden small:flex items-center gap-x-6 h-full">
               {process.env.FEATURE_SEARCH_ENABLED && <DesktopSearchModal />}
               <Link href="/account">
-                <a>Account</a>
+                <a>
+                  <HiOutlineUserCircle className="w-6 h-6 font-light" />
+                </a>
               </Link>
             </div>
             <CartDropdown />
