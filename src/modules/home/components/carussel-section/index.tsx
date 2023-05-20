@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/link-passhref */
 import React from "react"
 import { useProducts } from "medusa-react"
 import { Product } from "@medusajs/medusa"
@@ -13,9 +14,12 @@ import "swiper/css/pagination"
 import "swiper/css/scrollbar"
 import "swiper/css/autoplay"
 import { CircleLoader } from "react-spinners"
+import Image from "next/image"
 
 const CarusellSectionHome = () => {
   const { products, isLoading } = useProducts()
+
+  console.log(products)
 
   return (
     <div className="flex justify-center items-center text-center">
@@ -50,12 +54,12 @@ const CarusellSectionHome = () => {
         className=""
       >
         {products?.map((product: Product) => (
-          <SwiperSlide className="drop-shadow-lg p-3">
+          <SwiperSlide key={product.id} className="drop-shadow-lg p-3">
             <Link href={`/products/${product.handle}`}>
               <img
                 src={product.thumbnail}
                 alt={product.title}
-                className="hover:opacity-50 cursor-pointer transition-all   shadow-lg  rounded-md"
+                className="hover:opacity-50 cursor-pointer transition-all shadow-lg rounded-md"
               />
             </Link>
           </SwiperSlide>
