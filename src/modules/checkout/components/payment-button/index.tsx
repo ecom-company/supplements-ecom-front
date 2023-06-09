@@ -7,6 +7,7 @@ import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js"
 import { useElements, useStripe } from "@stripe/react-stripe-js"
 import { useCart } from "medusa-react"
 import React, { useEffect, useState } from "react"
+import { useMercadopago } from "react-sdk-mercadopago"
 
 type PaymentButtonProps = {
   paymentSession?: PaymentSession | null
@@ -53,6 +54,8 @@ const PaymentButton: React.FC<PaymentButtonProps> = ({ paymentSession }) => {
       return (
         <PayPalPaymentButton notReady={notReady} session={paymentSession} />
       )
+    case "mercadopago":
+      return <MercadoPagoButton session={paymentSession} />
     default:
       return <Button disabled>Select a payment method</Button>
   }
@@ -160,6 +163,24 @@ const StripePaymentButton = ({
       )}
     </>
   )
+}
+
+const MERCADOPAGO_PUBLIC_KEY =
+  process.env.NEXT_PUBLIC_MERCADOPAGO_PUBLIC_KEY ||
+  "APP_USR-94a386f2-5f5b-48bc-ad47-2c15f1d5c414"
+
+const MercadoPagoButton = ({ session }: { session: PaymentSession }) => {
+  const mercadoPago = useMercadopago.v2(MERCADOPAGO_PUBLIC_KEY, {
+    locale: "es-CO",
+  })
+
+  const checkout = mercadoPago?.checkout({
+    preference: {
+      id: session.data.preferenceId,
+    },
+  })
+
+  return <Button onClick={() => checkout.open()}>Pagar</Button>
 }
 
 const PAYPAL_CLIENT_ID = process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID || ""

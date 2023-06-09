@@ -24,8 +24,6 @@ const CarusellSectionHome = () => {
 
   const { data: products, isLoading } = useFeaturedProductsQuery()
 
-  console.log(products)
-
   return (
     <div className="flex justify-center items-center text-center">
       {isLoading && (

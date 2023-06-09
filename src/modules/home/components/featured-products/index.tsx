@@ -3,7 +3,7 @@ import CarusellSectionHome from "../carussel-section"
 
 const FeaturedProducts = () => {
   return (
-    <div className="h-screen py-2 snap-item">
+    <div className="h-[70vh] py-2 snap-item">
       <div className="content-container py-12">
         <CarusellSectionHome />
       </div>

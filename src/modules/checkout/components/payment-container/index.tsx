@@ -29,6 +29,10 @@ const PaymentInfoMap: Record<string, { title: string; description: string }> = {
     title: "Test payment",
     description: "Test payment using medusa-payment-manual",
   },
+  mercadopago: {
+    title: "mercado pago",
+    description: "Secure payment with mercado pago",
+  },
 }
 
 const PaymentContainer: React.FC<PaymentContainerProps> = ({

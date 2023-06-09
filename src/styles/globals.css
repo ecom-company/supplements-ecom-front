@@ -122,3 +122,9 @@
 .swiper-pagination .swiper-pagination-bullet-active {
   background: red;
 }
+
+@media (max-width: 500px) {
+  .list {
+    @apply flex flex-col;
+  }
+}
